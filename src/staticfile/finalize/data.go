@@ -125,6 +125,11 @@ http {
 			{{ range $code, $value := .StatusCodes }}
 			  error_page {{ $code }} {{ $value }};
 		  {{ end }}
+		  
+  	location /app-config {
+	    default_type application/json;
+	    return 200 '<%= ENV["APP_CONFIG"] %>';
+	  }
     }
 
     {{if not .HostDotFiles}}
